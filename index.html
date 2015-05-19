@@ -29,7 +29,35 @@
 		<link href="css/style.css" rel="stylesheet">
 
 		<!-- Page Script -->
-		<script src="js/script.js"></script>
+		<script src="js/text_formatter.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function () {
+				$('#my-button').on('click', function () {
+					var div = document.createElement('div')
+					var raw = $('#fake-text-area').html()
+
+					var stripped = StripHTML(raw)
+					var rehtml = EmbedHTML(stripped)
+					$('#fake-text-area').html(rehtml)
+
+					if(raw !== $('#fake-text-area').html()) {
+						console.log(raw)
+						console.log($('#fake-text-area').html())
+
+					}
+
+					//
+					// var stripped = raw.replace(/<div>/g, '\n').replace(/<\/div>/g, '').replace(/<br>/g, '\n')
+					// div.innerHTML = stripped
+					// console.log(stripped)
+					// // AHAHAHAHAHAHAHAH FUCK
+					// var re_htmld = stripped.replace(/\n(?=[^\n]*$)/g, '<br>')
+					// console.log(re_htmld)
+					// $('#fake-text-area').html(re_htmld)
+				})
+
+			})
+		</script>
 	</head>
 
 	<body>
@@ -37,6 +65,8 @@
 		<!-- Bootstrap flavored page setup -->
 		<div class="col-xs-10 col-xs-offset-1" id="main-body">
 			<h1 align="center">Hello, World!</h1>
+			<button id="my-button">Hello</button>
+			<div id="fake-text-area" contenteditable="true"><div><br></div></div>
 		</div>
 
 	</body>
